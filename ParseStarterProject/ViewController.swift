@@ -16,32 +16,47 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let testObject = PFObject(className: "TestObject2")
+//        let user = PFObject(className: "Users")
+//        
+//        user["name"] = "Sky"
+//        
+//        user.saveInBackground { (success, error) in
+//            
+//            if success {
+//                
+//                print("object saved")
+//                
+//            } else {
+//                
+//                if let error = error {
+//                    
+//                    print (error)
+//
+//                } else {
+//                    
+//                    print ("error")
+//                }
+//                
+//                
+//            }
+//            }
         
-        testObject["foo"] = "bar"
+        let query = PFQuery(className: "Users")
         
-        testObject.saveInBackground { (success, error) -> Void in
+        query.getObjectInBackground(withId: "2ReR3K2rY9") { (object, error) in
             
-            // added test for success 11th July 2016
+            if error != nil {
             
-            if success {
-                
-                print("Object has been saved.")
-                
+            print(error)
+            
             } else {
-                
-                if error != nil {
-                    
-                    print (error)
-                    
-                } else {
-                    
-                    print ("Error")
-                }
-                
-            }
             
+            if let user = object {
+            print(user["name"])
+            }
+            }
         }
+            
         
     }
 
