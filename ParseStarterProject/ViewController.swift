@@ -52,16 +52,22 @@ class ViewController: UIViewController {
             } else {
             
             if let user = object {
-            print(user["name"])
-            }
+                
+            user["user"] = "Wen"
+
+                user.saveInBackground(block: { (success, error) in
+                    if success {
+                        print("saved")
+                    } else {
+                        print("error")
+                    }
+                
+            })
             }
         }
             
+
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+}
 }
