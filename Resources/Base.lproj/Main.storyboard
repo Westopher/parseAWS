@@ -54,7 +54,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <action selector="signUpOrLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z6O-iz-gMR"/>
                                     <action selector="signupOrLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HgC-6b-55N"/>
                                 </connections>
                             </button>
@@ -71,7 +70,6 @@
                                 <state key="normal" title="Log In"/>
                                 <connections>
                                     <action selector="changeSignupMode:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UfU-U9-T53"/>
-                                    <action selector="changeSignupModel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="490-SW-Ks8"/>
                                 </connections>
                             </button>
                         </subviews>

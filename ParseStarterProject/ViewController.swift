@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
     @IBAction func signupOrLogin(_ sender: Any) {
         
-        
+        print(signupMode)
         
     }
     
@@ -33,6 +33,25 @@ class ViewController: UIViewController {
             
             // change to login mode
             
+            signupOrLogin.setTitle("Log In", for: [])
+            
+            changeSignupModeButton.setTitle("Sign Up", for: [])
+            
+            messageLabel.text = "Don't have an account?"
+            
+            signupMode = false
+            
+        } else {
+            
+            // Change to sign up mode
+            
+            signupOrLogin.setTitle("Sign Up", for: [])
+            
+            changeSignupModeButton.setTitle("Log In", for: [])
+            
+            messageLabel.text = "Already have an account?"
+            
+            signupMode = true
         }
         
     }
