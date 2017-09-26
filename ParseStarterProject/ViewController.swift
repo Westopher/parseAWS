@@ -85,12 +85,40 @@ class ViewController: UIViewController {
                     
                 })
                 
-            }
+            } else {
+                
+                // Login mode
+                
+                PFUser.logInWithUsername(inBackground: emailTextField.text!, password: passwordTextField.text!, block: { (user, error) in
+                    
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    
+                    if error != nil {
+                        
+                        var displayErrorMessage = "Please try again later"
+                        
+                        if let errorMessage = (error! as NSError).userInfo["error"] as? String {
+                            
+                            displayErrorMessage = errorMessage
+                            
+                        }
+                        
+                        self.createAlert(title: "Login Error", message: displayErrorMessage)
+                        
+                    } else {
+                        
+                        print("logged in")
+                        
+                    }
+                
+            } )
             
+            }
         }
     
     }
-        
+    
         
     
     
