@@ -81,6 +81,8 @@ class ViewController: UIViewController {
                         
                         print("user signed up")
                         
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
+                        
                     }
                     
                 })
@@ -109,6 +111,8 @@ class ViewController: UIViewController {
                     } else {
                         
                         print("logged in")
+                        
+                        self.performSegue(withIdentifier: "showUserTable", sender: self)
                         
                     }
                 
