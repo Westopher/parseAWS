@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     
     var signupMode = true
     
+    var activityIndicator = UIActivityIndicatorView()
     
     @IBOutlet var emailTextField: UITextField!
 
@@ -41,6 +42,14 @@ class ViewController: UIViewController {
             
         } else {
             
+            activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+            activityIndicator.center = self.view.center
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
+            UIApplication.shared.beginIgnoringInteractionEvents()
+            
             if signupMode {
                 
                 // Sign Up
@@ -53,11 +62,20 @@ class ViewController: UIViewController {
                 
                 user.signUpInBackground(block: { (success, error) in
                     
+                    self.activityIndicator.stopAnimating()
+                    UIApplication.shared.endIgnoringInteractionEvents()
+                    
                     if error != nil {
                         
-                        print(error)
+                        var displayErrorMessage = "Please try again later"
                         
-                        self.createAlert(title: "Error in form", message: "Parse Error")
+                        if let errorMessage = (error! as NSError).userInfo["error"] as? String {
+                            
+                            displayErrorMessage = errorMessage
+                            
+                        }
+                        
+                        self.createAlert(title: "Signup Error", message: displayErrorMessage)
                         
                     } else {
                         

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParseStarterProject/ViewController.swift"
-            timestampString = "528127542.961976"
+            timestampString = "528133687.12516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "signupOrLogin(_:)"
             landmarkType = "7">
          </BreakpointContent>
