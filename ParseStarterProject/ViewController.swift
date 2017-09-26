@@ -18,20 +18,57 @@ class ViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
 
     @IBOutlet var passwordTextField: UITextField!
+    
+    func createAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            
+            self.dismiss(animated: true, completion: nil)
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+        
+    }
 
     @IBAction func signupOrLogin(_ sender: Any) {
         
         if emailTextField.text == "" || passwordTextField.text == "" {
             
-            let alert = UIAlertController(title: "Error in form", message: "Please enter a username and password", preferredStyle: UIAlertControllerStyle.alert)
+            createAlert(title: "Error in Form", message: "Please enter username and password")
             
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                
-                self.dismiss(animated: true, completion: nil)
-                
-            }))
+        } else {
             
-                self.present(alert, animated: true, completion: nil)
+            if signupMode {
+                
+                // Sign Up
+                
+                let user = PFUser()
+                
+                user.username = emailTextField.text
+                user.email = emailTextField.text
+                user.password = passwordTextField.text
+                
+                user.signUpInBackground(block: { (success, error) in
+                    
+                    if error != nil {
+                        
+                        print(error)
+                        
+                        self.createAlert(title: "Error in form", message: "Parse Error")
+                        
+                    } else {
+                        
+                        print("user signed up")
+                        
+                    }
+                    
+                })
+                
+            }
+            
         }
     
     }
