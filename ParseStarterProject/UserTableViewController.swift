@@ -13,7 +13,7 @@ class UserTableViewController: UITableViewController {
     
     var usernames = [""]
     
-    
+    var userIDs = [""]
     
 
     @IBAction func logout(_ sender: Any) {
@@ -61,6 +61,7 @@ class UserTableViewController: UITableViewController {
                         let usernameArray = user.username!.components(separatedBy: "@")
                         
                         self.usernames.append(usernameArray[0])
+                        self.userIDs.append(user.objectId!)
                         
                     }
                 }
@@ -99,6 +100,21 @@ class UserTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        cell?.accessoryType = UITableViewCellAccessoryType.checkmark
+        
+        let following = PFObject(className: "Followers")
+        
+        following["follower"] = PFUser.current()?.objectId
+        following["following"] = userIDs[indexPath.row]
+        
+        following.saveInBackground()
+        
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.
