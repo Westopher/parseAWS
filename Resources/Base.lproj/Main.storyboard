@@ -111,7 +111,16 @@
                             <outlet property="delegate" destination="EqA-Xp-nmd" id="iqY-qh-UHk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="iqb-Ac-RI7"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="iqb-Ac-RI7">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="WFc-2B-DWQ">
+                            <connections>
+                                <action selector="logout:" destination="EqA-Xp-nmd" id="RiQ-uw-sT4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="gYB-7J-xuW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P92-CG-mFz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

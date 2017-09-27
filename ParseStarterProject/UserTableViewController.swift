@@ -7,9 +7,26 @@
 //
 
 import UIKit
+import Parse
 
 class UserTableViewController: UITableViewController {
 
+    @IBAction func logout(_ sender: Any) {
+        
+        PFUser.logOut()
+        
+        performSegue(withIdentifier: "logoutSegue", sender: self)
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+            self.navigationController?.navigationBar.isHidden = false
+    
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
