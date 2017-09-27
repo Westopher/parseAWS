@@ -58,7 +58,9 @@ class UserTableViewController: UITableViewController {
                     
                     if let user = object as? PFUser {
                         
-                        self.usernames.append(user.username!)
+                        let usernameArray = user.username!.components(separatedBy: "@")
+                        
+                        self.usernames.append(usernameArray[0])
                         
                     }
                 }
