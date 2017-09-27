@@ -10,6 +10,11 @@ import UIKit
 import Parse
 
 class UserTableViewController: UITableViewController {
+    
+    var usernames = [""]
+    
+    
+    
 
     @IBAction func logout(_ sender: Any) {
         
@@ -35,6 +40,35 @@ class UserTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        let query = PFUser.query()
+        
+        query?.findObjectsInBackground(block: { (objects, error) in
+            
+            if error != nil {
+                
+                print(error)
+                
+            // checking to see if objects array exists. if it does, loop through to get objects, then see if those objects can be casted as PFUsers
+            } else if let users = objects {
+                
+                self.usernames.removeAll()
+                
+                for object in users {
+                    
+                    if let user = object as? PFUser {
+                        
+                        self.usernames.append(user.username!)
+                        
+                    }
+                }
+                
+            }
+            
+            self.tableView.reloadData()
+            
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,14 +85,14 @@ class UserTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 4
+        return usernames.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        cell.textLabel?.text = "Instagram Clone"
+        cell.textLabel?.text = usernames[indexPath.row]
 
         return cell
     }

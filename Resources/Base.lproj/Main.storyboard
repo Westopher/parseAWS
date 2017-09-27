@@ -88,7 +88,7 @@
             </objects>
             <point key="canvasLocation" x="-79.200000000000003" y="129.98500749625188"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Users-->
         <scene sceneID="CsI-3L-cJx">
             <objects>
                 <tableViewController id="EqA-Xp-nmd" customClass="UserTableViewController" customModule="ParseStarterProject_Swift" customModuleProvider="target" sceneMemberID="viewController">
@@ -111,7 +111,7 @@
                             <outlet property="delegate" destination="EqA-Xp-nmd" id="iqY-qh-UHk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="iqb-Ac-RI7">
+                    <navigationItem key="navigationItem" title="Users" id="iqb-Ac-RI7">
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="WFc-2B-DWQ">
                             <connections>
                                 <action selector="logout:" destination="EqA-Xp-nmd" id="RiQ-uw-sT4"/>
