@@ -13,7 +13,7 @@ class UserTableViewController: UITableViewController {
     
     var usernames = [""]
     var userIDs = [""]
-    var isFollowing = ["" : true]
+    var isFollowing = ["" : false]
     
 
     @IBAction func logout(_ sender: Any) {
@@ -53,6 +53,8 @@ class UserTableViewController: UITableViewController {
             } else if let users = objects {
                 
                 self.usernames.removeAll()
+                self.userIDs.removeAll()
+                self.isFollowing.removeAll()
                 
                 for object in users {
                     
@@ -81,6 +83,12 @@ class UserTableViewController: UITableViewController {
                                     self.isFollowing[user.objectId!] = false
                                     
                                 }
+                                
+                                if self.self.isFollowing.count == self.usernames.count {
+                                    
+                                     self.tableView.reloadData()
+                                    
+                                }
                             }
                         
                         })
@@ -90,7 +98,7 @@ class UserTableViewController: UITableViewController {
                 
             }
             
-            self.tableView.reloadData()
+           
             
         })
         
@@ -118,6 +126,12 @@ class UserTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         cell.textLabel?.text = usernames[indexPath.row]
+        
+        if isFollowing[userIDs[indexPath.row]]! {
+            
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark
+            
+        }
 
         return cell
     }
@@ -126,15 +140,44 @@ class UserTableViewController: UITableViewController {
         
         let cell = tableView.cellForRow(at: indexPath)
         
-        cell?.accessoryType = UITableViewCellAccessoryType.checkmark
+        if isFollowing[userIDs[indexPath.row]]! {
+            
+            isFollowing[userIDs[indexPath.row]] = false
+            
+            cell?.accessoryType = UITableViewCellAccessoryType.none
+            
+            let query = PFQuery(className: "Followers")
+            
+            query.whereKey("follower", equalTo: (PFUser.current()?.objectId!)!)
+            query.whereKey("following", equalTo: userIDs[indexPath.row])
+            
+            query.findObjectsInBackground(block: { (objects, error) in
+                
+                if let objects = objects {
+                    
+                    for object in objects {
+                        
+                            object.deleteInBackground()
+                    
+                    }
+                }
+                
+            })
+            
+        } else {
+            
+            isFollowing[userIDs[indexPath.row]] = true
         
-        let following = PFObject(className: "Followers")
+            cell?.accessoryType = UITableViewCellAccessoryType.checkmark
         
-        following["follower"] = PFUser.current()?.objectId
-        following["following"] = userIDs[indexPath.row]
+            let following = PFObject(className: "Followers")
         
-        following.saveInBackground()
+            following["follower"] = PFUser.current()?.objectId
+            following["following"] = userIDs[indexPath.row]
         
+            following.saveInBackground()
+        
+        }
         
     }
     
