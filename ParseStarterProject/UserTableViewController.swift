@@ -12,8 +12,8 @@ import Parse
 class UserTableViewController: UITableViewController {
     
     var usernames = [""]
-    
     var userIDs = [""]
+    var isFollowing = ["" : true]
     
 
     @IBAction func logout(_ sender: Any) {
@@ -62,6 +62,28 @@ class UserTableViewController: UITableViewController {
                         
                         self.usernames.append(usernameArray[0])
                         self.userIDs.append(user.objectId!)
+                        
+                        let query = PFQuery(className: "Followers")
+                        
+                        query.whereKey("follower", equalTo: (PFUser.current()?.objectId)!)
+                        query.whereKey("following", equalTo: user.objectId!)
+                        
+                        query.findObjectsInBackground(block: { (objects, error) in
+                        
+                            if let objects = objects {
+                                
+                                if objects.count > 0 {
+                                    
+                                    self.isFollowing[user.objectId!] = true
+                                    
+                                } else {
+                                    
+                                    self.isFollowing[user.objectId!] = false
+                                    
+                                }
+                            }
+                        
+                        })
                         
                     }
                 }
@@ -115,6 +137,10 @@ class UserTableViewController: UITableViewController {
         
         
     }
+    
+
+    
+//******************************---------->>>>>>>>>>>>>>>> You stopped at 26:35 in the video <<<<<------*********
 
     /*
     // Override to support conditional editing of the table view.
