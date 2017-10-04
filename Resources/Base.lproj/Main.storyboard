@@ -112,6 +112,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Users" id="iqb-Ac-RI7">
+                        <barButtonItem key="leftBarButtonItem" title="Post" id="7ZD-Bv-Kth">
+                            <connections>
+                                <segue destination="gAW-6y-gOx" kind="show" id="1Vw-4T-HMO"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="WFc-2B-DWQ">
                             <connections>
                                 <action selector="logout:" destination="EqA-Xp-nmd" id="RiQ-uw-sT4"/>
@@ -125,6 +130,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P92-CG-mFz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1527" y="130"/>
+        </scene>
+        <!--Post-->
+        <scene sceneID="aHD-9C-9VK">
+            <objects>
+                <viewController title="Post" id="gAW-6y-gOx" customClass="PostViewController" customModule="ParseStarterProject_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3er-cS-YzA"/>
+                        <viewControllerLayoutGuide type="bottom" id="dRk-b5-Bbn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CFN-k8-4N7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="clipart--person-icon--cliparts-15.png" translatesAutoresizingMaskIntoConstraints="NO" id="W31-P3-WcT">
+                                <rect key="frame" x="67" y="93" width="240" height="242"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPJ-gC-Qp6">
+                                <rect key="frame" x="128" y="379" width="119" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Choose an image"/>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Cc-fR-k1B">
+                                <rect key="frame" x="16" y="428" width="343" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Qz-7O-Ifi">
+                                <rect key="frame" x="135" y="488" width="105" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.31845155358314514" green="0.55497449636459351" blue="0.96868014335632324" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Post Image">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageToPost" destination="W31-P3-WcT" id="87b-d7-ngG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nFZ-lQ-Hnq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2365.5999999999999" y="129.98500749625188"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="70C-fj-52P">
@@ -143,4 +195,7 @@
             <point key="canvasLocation" x="742" y="136"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="clipart--person-icon--cliparts-15.png" width="620" height="800"/>
+    </resources>
 </document>
