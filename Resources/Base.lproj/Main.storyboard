@@ -151,6 +151,9 @@
                                 <rect key="frame" x="128" y="379" width="119" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Choose an image"/>
+                                <connections>
+                                    <action selector="chooseAnImage:" destination="gAW-6y-gOx" eventType="touchUpInside" id="hys-uy-gyb"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Cc-fR-k1B">
                                 <rect key="frame" x="16" y="428" width="343" height="30"/>
@@ -166,12 +169,16 @@
                                 <state key="normal" title="Post Image">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="postImage:" destination="gAW-6y-gOx" eventType="touchUpInside" id="O9f-SM-kLV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="imageToPost" destination="W31-P3-WcT" id="87b-d7-ngG"/>
+                        <outlet property="messageTextField" destination="9Cc-fR-k1B" id="Fy2-iL-hrN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nFZ-lQ-Hnq" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -8,11 +8,40 @@
 
 import UIKit
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet var imageToPost: UIImageView!
     
+    @IBAction func chooseAnImage(_ sender: Any) {
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        imagePicker.allowsEditing = false
+        
+        self.present(imagePicker, animated: true, completion: nil)
+        
+    }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+       
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            imageToPost.image = image
+            
+            
+        }
+        
+        self.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    
+    @IBOutlet var messageTextField: UITextField!
+    
+    
+    @IBAction func postImage(_ sender: Any) {
+    }
     
     
     override func viewDidLoad() {
